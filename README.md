@@ -1,5 +1,9 @@
 # seismic-linter
 
+[![PyPI](https://img.shields.io/pypi/v/seismic-linter)](https://pypi.org/project/seismic-linter/)
+[![CI](https://github.com/AmanSinghNp/seismic-linter/actions/workflows/ci.yml/badge.svg)](https://github.com/AmanSinghNp/seismic-linter/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Stop publishing 99% accurate models that fail in production.**
 
 seismic-linter automatically detects temporal causality violations in earthquake forecasting and seismology machine learning pipelines. It catches the silent bugs that make your model "cheat" by using future data during training—leading to papers with impressive results that completely fail during real-time deployment.

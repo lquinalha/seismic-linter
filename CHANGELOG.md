@@ -23,13 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-## [0.1.0] - 2026-02-XX
-
-### Added
-- First alpha release
-- Core temporal causality detection (rules T001-T003)
-- CLI tool for linting Python files
-- Basic documentation
-
 [Unreleased]: https://github.com/AmanSinghNp/seismic-linter/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/AmanSinghNp/seismic-linter/releases/tag/v0.1.0
