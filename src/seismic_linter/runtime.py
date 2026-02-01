@@ -10,9 +10,8 @@ from typing import Any, Callable
 
 class TemporalCausalityError(ValueError):
     """Raised when temporal causality is violated in data."""
+
     pass
-
-
 
 
 def verify_monotonicity(time_col: str = "time") -> Callable:

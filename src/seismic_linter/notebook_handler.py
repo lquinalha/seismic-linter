@@ -7,7 +7,7 @@ from .rules import Violation
 
 
 class NotebookMapper:
-    def __init__(self):
+    def __init__(self) -> None:
         # virtual_line -> (cell_index, local_line)
         self.virtual_lines: Dict[int, Tuple[int, int]] = {}
         self.cells: Dict[int, str] = {}  # cell_index -> cell_source

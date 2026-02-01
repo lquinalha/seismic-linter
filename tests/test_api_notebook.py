@@ -1,6 +1,5 @@
-
-
 from seismic_linter.analyzer import analyze_file
+
 
 def test_analyze_file_notebook(tmp_path):
     """End-to-end test for analyzing a notebook file via public API."""
@@ -46,11 +45,11 @@ def test_analyze_file_notebook(tmp_path):
     nb_file.write_text(nb_content.strip(), encoding="utf-8")
 
     violations = analyze_file(nb_file)
-    
+
     # Should have T001 on the last line of the cell
     assert len(violations) >= 1
     v = next(v for v in violations if v.rule_id == "T001")
-    
+
     assert v.filename == str(nb_file)
     assert v.cell_id == 1
     # Line 3 in local cell (import, df=..., df[...]...)

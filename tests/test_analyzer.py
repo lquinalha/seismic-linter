@@ -7,7 +7,7 @@ def test_safe_parent_recursion_limit():
     # extremely nested calls: df.a.b.c.d.e....mean()
     # We just need enough to exceed max_iter=100 in logic, but standard python
     # recursion limit handles AST. The linter has an explicit loop limit.
-    
+
     # Heuristic chain
     code = "df" + ".parent" * 150 + ".mean()"
     analyzer = TemporalAnalyzer("test")

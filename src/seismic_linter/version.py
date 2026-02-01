@@ -6,11 +6,12 @@ except ImportError:
     # Fallback: try reading pyproject.toml directly if available
     try:
         from pathlib import Path
+
         try:
             import tomllib
         except ImportError:
             import tomli as tomllib
-        
+
         # Look for pyproject.toml relative to this file
         # src/seismic_linter/version.py -> src/seismic_linter -> src -> root
         root = Path(__file__).resolve().parent.parent.parent

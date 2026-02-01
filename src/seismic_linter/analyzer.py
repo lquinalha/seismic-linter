@@ -12,8 +12,6 @@ from .rules import Violation, RULES
 from .notebook_handler import parse_notebook, NotebookMapper, map_violations
 from .caching import ContentCache
 
-
-
 # T002 Heuristics
 UNSAFE_EXACT_NAMES = {"df", "data", "x", "input", "inputs", "dataframe", "dataset"}
 UNSAFE_SUBSTRING_NAMES = ["test", "val", "full", "all", "whole", "entire"]
@@ -25,8 +23,8 @@ def extract_suppressions(source: str) -> Dict[int, Set[str]]:
     Parse source code to find suppression comments.
     Format: # seismic-linter: ignore T001 T002
     Returns: Dict[lineno, Set[rule_ids]]
-    
-    If tokenization fails (e.g. syntax error or encoding issue), returns empty dict 
+
+    If tokenization fails (e.g. syntax error or encoding issue), returns empty dict
     (no suppressions applied).
     """
     suppressions: Dict[int, Set[str]] = {}

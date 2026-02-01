@@ -1,5 +1,5 @@
-
 from seismic_linter.analyzer import analyze_code
+
 
 def test_inline_suppression_single():
     code = """
@@ -10,6 +10,7 @@ df['b'] = df['a'].mean()  # seismic-linter: ignore T001
     violations = analyze_code(code)
     # T001 should be suppressed
     assert len(violations) == 0
+
 
 def test_inline_suppression_multiple():
     code = """
@@ -26,6 +27,7 @@ x, y = train_test_split(df) # seismic-linter: ignore T001 T003
     assert len(violations) == 1
     assert violations[0].lineno == 6
     assert violations[0].rule_id == "T001"
+
 
 def test_inline_suppression_irrelevant():
     code = """

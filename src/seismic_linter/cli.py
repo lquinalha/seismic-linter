@@ -20,7 +20,6 @@ from .config import load_config, find_pyproject_toml, _normalize_list_values
 from .rules import Violation
 from .notebook_handler import parse_notebook
 
-
 SUPPORTED_EXTENSIONS = {".py", ".ipynb"}
 
 
@@ -77,7 +76,7 @@ def collect_files(base_path: Path, config: Dict[str, Any]) -> List[Path]:
     # 1. Determine base patterns (Default to all if no 'include' in config)
     includes = config.get("include", [])
 
-    candidates = []
+    candidates: List[Path] = []
     if not includes:
         if base_path.is_dir():
             candidates.extend(base_path.rglob("*"))
@@ -192,9 +191,8 @@ def main():
     all_files: Set[Path] = set()
     for p in paths_to_scan:
         if p.is_file():
-            if (
-                p.suffix in SUPPORTED_EXTENSIONS 
-                and not is_excluded(p, excludes, p.parent)
+            if p.suffix in SUPPORTED_EXTENSIONS and not is_excluded(
+                p, excludes, p.parent
             ):
                 all_files.add(p)
         else:
@@ -216,10 +214,10 @@ def main():
     for f in files_to_analyze:
         # We check cache locally to avoid spinning up workers for unchanged files.
         # For .ipynb we parse to get source; avoids worker overhead if cached.
-        
+
         source: Optional[str] = None
         mapper: Optional[Any] = None
-        
+
         try:
             if f.suffix == ".py":
                 with open(f, "r", encoding="utf-8") as file_obj:
@@ -237,7 +235,7 @@ def main():
         except Exception as e:
             print(f"Cache skip (read/parse error): {f}: {e}", file=sys.stderr)
             # If read failed, we might still let the worker try and fail gracefully
-            # But usually we just pass what we have. 
+            # But usually we just pass what we have.
             # If source is None, worker will try read.
             pass
 

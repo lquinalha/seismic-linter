@@ -3,12 +3,11 @@ import sys
 from pathlib import Path
 
 
-
 def run_cli(args, cwd, tmp_path):
     """Run CLI and return (returncode, stdout, stderr). Uses file redirection."""
     out_file = tmp_path / "stdout.txt"
     err_file = tmp_path / "stderr.txt"
-    
+
     # Ensure fresh files
     # Ensure fresh files
     if out_file.exists():
@@ -16,9 +15,10 @@ def run_cli(args, cwd, tmp_path):
     if err_file.exists():
         err_file.unlink()
 
-    with open(out_file, "w", encoding="utf-8") as out, open(
-        err_file, "w", encoding="utf-8"
-    ) as err:
+    with (
+        open(out_file, "w", encoding="utf-8") as out,
+        open(err_file, "w", encoding="utf-8") as err,
+    ):
         result = subprocess.run(
             args,
             stdout=out,
@@ -26,12 +26,12 @@ def run_cli(args, cwd, tmp_path):
             text=True,
             cwd=cwd,
             env={
-                 **sys.modules["os"].environ,
-                 "PYTHONPATH": str(Path.cwd() / "src"),
-                 "PYTHONIOENCODING": "utf-8",
-            }
+                **sys.modules["os"].environ,
+                "PYTHONPATH": str(Path.cwd() / "src"),
+                "PYTHONIOENCODING": "utf-8",
+            },
         )
-    
+
     stdout = out_file.read_text(encoding="utf-8") if out_file.exists() else ""
     stderr = err_file.read_text(encoding="utf-8") if err_file.exists() else ""
     return result.returncode, stdout, stderr
@@ -40,9 +40,7 @@ def run_cli(args, cwd, tmp_path):
 def test_cli_version(tmp_path):
     """Test that the CLI runs and outputs version."""
     rc, out, err = run_cli(
-        [sys.executable, "-m", "seismic_linter.cli", "--version"],
-        Path.cwd(),
-        tmp_path
+        [sys.executable, "-m", "seismic_linter.cli", "--version"], Path.cwd(), tmp_path
     )
     assert rc == 0
     assert "seismic-linter" in out
@@ -51,9 +49,7 @@ def test_cli_version(tmp_path):
 def test_cli_help(tmp_path):
     """Test that the CLI help command works."""
     rc, out, err = run_cli(
-        [sys.executable, "-m", "seismic_linter.cli", "--help"],
-        Path.cwd(),
-        tmp_path
+        [sys.executable, "-m", "seismic_linter.cli", "--help"], Path.cwd(), tmp_path
     )
     assert rc == 0
     assert "Detect temporal causality violations" in out
@@ -65,9 +61,7 @@ def test_cli_single_file(tmp_path):
     py_file.write_text("x = 1", encoding="utf-8")
 
     rc, out, err = run_cli(
-        [sys.executable, "-m", "seismic_linter.cli", str(py_file)],
-        Path.cwd(),
-        tmp_path
+        [sys.executable, "-m", "seismic_linter.cli", str(py_file)], Path.cwd(), tmp_path
     )
     assert rc == 0, f"Failed with {rc}. Stderr: {err}"
     assert "No violations" in out or str(py_file) in out
@@ -82,15 +76,15 @@ def test_cli_worker_error_path(tmp_path):
     rc, out, err = run_cli(
         [sys.executable, "-m", "seismic_linter.cli", str(tmp_path)],
         Path.cwd(),
-        tmp_path
+        tmp_path,
     )
 
-    # We expect E000 in stdout OR "Analysis failed" in stdout (due to synthesized violation)
+    # Expect E000 or "Analysis failed" in stdout (synthesized violation)
     # AND non-zero exit because of error severity
 
-    assert "E000" in out or "Analysis failed" in out, (
-        f"Stdout was: {out!r}\nStderr was: {err!r}"
-    )
+    assert (
+        "E000" in out or "Analysis failed" in out
+    ), f"Stdout was: {out!r}\nStderr was: {err!r}"
     assert rc != 0, f"Expected failure but got {rc}\nStdout: {out!r}\nStderr: {err!r}"
 
 
@@ -114,7 +108,7 @@ def test_cli_ignore_normalizes_whitespace(tmp_path):
             str(py_file),
         ],
         Path.cwd(),
-        tmp_path
+        tmp_path,
     )
     assert rc == 0, f"Failed: {err}"
     assert "T001" not in out, "T001 should be ignored when passed as ' T001 '"
@@ -125,7 +119,7 @@ def test_cli_stress_torture(tmp_path):
     # We must assume tests/data/torture.py exists relative to CWD
     torture_file = Path("tests/data/torture.py")
     if not torture_file.exists():
-        # Fallback for when running from elsewhere? 
+        # Fallback for when running from elsewhere?
         # But we assume running from project root.
         # But we assume running from project root.
         import pytest
@@ -135,7 +129,7 @@ def test_cli_stress_torture(tmp_path):
     rc, out, err = run_cli(
         [sys.executable, "-m", "seismic_linter.cli", str(torture_file)],
         Path.cwd(),
-        tmp_path
+        tmp_path,
     )
     assert rc == 0, f"Torture test failed/crashed: {err}"
 
@@ -176,7 +170,3 @@ def test_print_formatting(capsys, tmp_path):
     print_text({"test.py": violations}, set(), set())
     captured = capsys.readouterr()
     assert "⚠️ [Line 10] T001: Test Message" in captured.out
-
-
-
-
