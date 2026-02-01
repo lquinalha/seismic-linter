@@ -96,7 +96,9 @@ def test_cli_stress_torture(tmp_path, monkeypatch, capsys):
     if not torture_file.exists():
         pytest.skip("tests/data/torture.py not found")
 
-    rc, out, err = run_cli_in_process([str(torture_file)], tmp_path, monkeypatch, capsys)
+    rc, out, err = run_cli_in_process(
+        [str(torture_file)], tmp_path, monkeypatch, capsys
+    )
     assert rc == 0
 
 

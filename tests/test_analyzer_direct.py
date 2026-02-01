@@ -1,8 +1,4 @@
-import pytest
-import sys
-from pathlib import Path
 from seismic_linter.analyzer import analyze_path, analyze_file
-from seismic_linter.rules import Violation
 
 def test_analyze_path_simple(tmp_path):
     """Test analyze_path with a simple python file."""

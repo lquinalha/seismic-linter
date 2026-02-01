@@ -2,7 +2,6 @@ import pytest
 from seismic_linter.runner import process_file_wrapper
 import seismic_linter.runner
 from unittest.mock import patch
-import sys
 
 def test_debug_runner_attrs():
     """Debug what attributes runner has."""

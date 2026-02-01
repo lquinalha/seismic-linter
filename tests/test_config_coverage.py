@@ -1,6 +1,3 @@
-import pytest
-import sys
-from unittest.mock import patch, MagicMock
 from seismic_linter.config import _normalize_list_values, load_config, DEFAULT_CONFIG
 
 def test_normalize_list_values_None():

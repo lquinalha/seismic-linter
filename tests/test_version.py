@@ -1,5 +1,4 @@
-import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from seismic_linter.version import _get_version
 import importlib.metadata
 
