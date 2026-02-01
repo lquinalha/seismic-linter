@@ -13,7 +13,7 @@ def run_cli_in_process(args, cwd, monkeypatch, capsys):
     """
     monkeypatch.chdir(cwd)
     start_args = ["seismic-linter"] + args
-    
+
     with patch.object(sys, "argv", start_args):
         try:
             main()
@@ -23,7 +23,7 @@ def run_cli_in_process(args, cwd, monkeypatch, capsys):
         except Exception as e:
             print(f"CLI Exception: {e}", file=sys.stderr)
             rc = 1
-            
+
     captured = capsys.readouterr()
     return rc, captured.out, captured.err
 
@@ -71,7 +71,7 @@ def test_cli_ignore_normalizes_whitespace(tmp_path, monkeypatch, capsys):
         "print(df['x'].mean())",
         encoding="utf-8",
     )
-    
+
     rc, out, err = run_cli_in_process(
         [
             "--ignore",
@@ -81,9 +81,9 @@ def test_cli_ignore_normalizes_whitespace(tmp_path, monkeypatch, capsys):
         ],
         tmp_path,
         monkeypatch,
-        capsys
+        capsys,
     )
-    
+
     assert rc == 0
     assert "T001" not in out
 
@@ -92,7 +92,7 @@ def test_cli_stress_torture(tmp_path, monkeypatch, capsys):
     """Ensure the linter doesn't crash on complex valid Python code."""
     original_cwd = Path.cwd()
     torture_file = original_cwd / "tests/data/torture.py"
-    
+
     if not torture_file.exists():
         pytest.skip("tests/data/torture.py not found")
 
@@ -108,12 +108,12 @@ def test_cli_json_output(tmp_path, monkeypatch, capsys):
     py_file.write_text("df.future.mean()", encoding="utf-8")
 
     rc, out, err = run_cli_in_process(
-        ["--output", "json", "--no-fail-on-error", str(py_file)], 
-        tmp_path, 
-        monkeypatch, 
-        capsys
+        ["--output", "json", "--no-fail-on-error", str(py_file)],
+        tmp_path,
+        monkeypatch,
+        capsys,
     )
-    
+
     assert rc == 0
     # Output should be valid JSON list
     data = json.loads(out)
@@ -128,12 +128,12 @@ def test_cli_github_output(tmp_path, monkeypatch, capsys):
     py_file.write_text("df.future.mean()", encoding="utf-8")
 
     rc, out, err = run_cli_in_process(
-        ["--output", "github", "--no-fail-on-error", str(py_file)], 
-        tmp_path, 
-        monkeypatch, 
-        capsys
+        ["--output", "github", "--no-fail-on-error", str(py_file)],
+        tmp_path,
+        monkeypatch,
+        capsys,
     )
-    
+
     assert rc == 0
     # Should look like ::warning file=...
     assert "::" in out
@@ -143,18 +143,15 @@ def test_cli_github_output(tmp_path, monkeypatch, capsys):
 def test_cli_fail_on_argument(tmp_path, monkeypatch, capsys):
     """Test --fail-on argument triggers exit code 1."""
     py_file = tmp_path / "leaky.py"
-    py_file.write_text("print('x')", encoding="utf-8") # Safe file
+    py_file.write_text("print('x')", encoding="utf-8")  # Safe file
 
     # Create a violation T001
     py_file.write_text("df.future.mean()", encoding="utf-8")
 
     rc, out, err = run_cli_in_process(
-        ["--fail-on", "T001", str(py_file)], 
-        tmp_path, 
-        monkeypatch, 
-        capsys
+        ["--fail-on", "T001", str(py_file)], tmp_path, monkeypatch, capsys
     )
-    
+
     assert rc == 1
 
 

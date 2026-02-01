@@ -2,11 +2,13 @@ from unittest.mock import patch
 from seismic_linter.version import _get_version
 import importlib.metadata
 
+
 def test_get_version_importlib_success():
     """Test that version is retrieved from importlib.metadata if installed."""
     # We patch where it is looked up: seismic_linter.version.version
     with patch("seismic_linter.version.version", return_value="1.2.3"):
         assert _get_version() == "1.2.3"
+
 
 def test_get_version_importlib_not_found():
     """Test fallback when package is not installed."""

@@ -3,6 +3,7 @@ try:
 except ImportError:
     from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
+
 def _get_version():
     try:
         return version("seismic-linter")
@@ -31,8 +32,8 @@ def _get_version():
             return data.get("project", {}).get("version", "0.2.0")
     except Exception:
         pass
-        
+
     return "0.2.0"
 
-__version__ = _get_version()
 
+__version__ = _get_version()
