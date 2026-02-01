@@ -22,6 +22,12 @@ seismic-linter provides:
 
 The GitHub Action runs in a Linux container; Windows runners are not supported.
 
+## Installation
+
+```bash
+pip install seismic-linter
+```
+
 ## Detected Rules
 
 | Rule ID | Description | Severity |
